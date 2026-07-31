@@ -1,10 +1,9 @@
-tensorflow
 streamlit
+tensorflow==2.16.1
 numpy
 pandas
-matplotlib
-pillow
-opencv-python
+Pillow
+opencv-python-headless
 scikit-learn
 h5py
-opencv-python
+matplotlib
