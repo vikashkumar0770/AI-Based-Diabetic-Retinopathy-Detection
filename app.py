@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 import cv2
+import matplotlib
 import matplotlib.cm as cm
 
 import tensorflow as tf
@@ -146,9 +147,9 @@ def overlay_heatmap_on_image(original_image, heatmap, alpha=0.4):
     heatmap_uint8 = np.uint8(255 * heatmap_resized)
 
     try:
-        jet = cm.get_cmap("jet")
+        jet = matplotlib.colormaps["jet"]
     except AttributeError:
-        jet = cm.colormaps["jet"]
+        jet = cm.get_cmap("jet")
     jet_colors = jet(np.arange(256))[:, :3]
     jet_heatmap = jet_colors[heatmap_uint8]
     jet_heatmap = np.uint8(jet_heatmap * 255)
