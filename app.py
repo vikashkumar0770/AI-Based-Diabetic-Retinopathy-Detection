@@ -145,7 +145,10 @@ def overlay_heatmap_on_image(original_image, heatmap, alpha=0.4):
     heatmap_resized = cv2.resize(heatmap, (base_image.shape[1], base_image.shape[0]))
     heatmap_uint8 = np.uint8(255 * heatmap_resized)
 
-    jet = cm.get_cmap("jet")
+    try:
+        jet = cm.get_cmap("jet")
+    except AttributeError:
+        jet = cm.colormaps["jet"]
     jet_colors = jet(np.arange(256))[:, :3]
     jet_heatmap = jet_colors[heatmap_uint8]
     jet_heatmap = np.uint8(jet_heatmap * 255)
